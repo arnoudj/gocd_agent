@@ -2,16 +2,16 @@
 - name: Ensure go group
   become: yes
   group:
-    name: "{{ gocd_server.group }}"
+    name: "{{ gocd_agent.group }}"
     state: present
 
 - name: Ensure go user
   become: yes
   user:
-    name: "{{ gocd_server.user }}"
+    name: "{{ gocd_agent.user }}"
     comment: Go CD User
-    group: "{{ gocd_server.group }}"
-    home: "{{ gocd_server.user_dir }}"
+    group: "{{ gocd_agent.group }}"
+    home: "{{ gocd_agent.user_dir }}"
 
 - name: Set hostname
   become: yes
@@ -33,12 +33,12 @@
 - name: add Go CD apt repository key
   become: yes
   apt_key:
-    url: "{{ gocd_server.repo_key_url }}"
+    url: "{{ gocd_agent.repo_key_url }}"
 
 - name: add GO CD apt repository
   become: yes
   apt_repository:
-    repo: "deb {{ gocd_server.repo_url }} /"
+    repo: "deb {{ gocd_agent.repo_url }} /"
     state: present
 
 - name: Install go-agent
