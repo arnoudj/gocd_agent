@@ -1,7 +1,7 @@
 ---
 
 gocd_agent:
-  version: "16.1.*"
+  version: "16.8.*"
   name: default
   user: go
   user_dir: /home/go
@@ -18,6 +18,9 @@ gocd_agent:
 
   git:
     email: gocd@example.com
+
+  repo_url: https://download.gocd.org
+  repo_key_url: https://download.gocd.org/GOCD-GPG-KEY.asc
 
   dependencies:
     skip_java: no
