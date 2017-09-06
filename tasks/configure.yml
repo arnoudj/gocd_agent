@@ -17,16 +17,14 @@
     src: gitconfig.j2
     dest: /home/{{ gocd_agent.user }}/.gitconfig
 
-- name: Create defaults file for additional agents
+- name: Create defaults file for agent
   become: yes
   template:
     src: defaults.j2
-    dest: /etc/default/go-agent-{{ item }}
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
+    dest: /etc/default/go-agent
 
-- name: Ensure all the agents are started
+- name: Ensure the agent is started
   become: yes
   service:
-    name: "go-agent-{{ item }}"
+    name: "go-agent"
     state: started
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
