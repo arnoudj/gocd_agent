@@ -1,15 +1,6 @@
 ---
 
 dependencies:
-  - role: ansible-city.users_and_groups
-    version: v1.0
-    users_and_groups:
-      users:
-        - name: "{{ gocd_agent.user }}"
-          gecos: Go CD user
-    tags:
-      - build
-
   - role: ansible-city.java
     version: v1.0
     tags:

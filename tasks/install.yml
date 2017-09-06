@@ -1,4 +1,17 @@
 ---
+- name: Ensure go group
+  become: yes
+  group:
+    name: "{{ gocd_server.group }}"
+    state: present
+
+- name: Ensure go user
+  become: yes
+  user:
+    name: "{{ gocd_server.user }}"
+    comment: Go CD User
+    group: "{{ gocd_server.group }}"
+    home: "{{ gocd_server.user_dir }}"
 
 - name: Set hostname
   become: yes
