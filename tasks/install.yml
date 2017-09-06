@@ -54,36 +54,18 @@
     name: go-agent
     state: stopped
 
-- name: Create soft links to startup scripts for additional agents
-  become: yes
-  file:
-    state: link
-    src: /etc/init.d/go-agent
-    dest: /etc/init.d/go-agent-{{ item }}
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
-
-- name: Create soft links to /usr for additional agents
-  become: yes
-  file:
-    state: link
-    src: /usr/share/go-agent
-    dest: /usr/share/go-agent-{{ item }}
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
-
-- name: Create working directories for additional agents
+- name: Create working directory for agent
   become: yes
   file:
     state: directory
-    path: "{{ gocd_agent.user_dir }}/work/go-agent-{{ item }}"
+    path: "{{ gocd_agent.user_dir }}/work/go-agent"
     owner: "{{ gocd_agent.user }}"
     group: "{{ gocd_agent.user }}"
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
 
-- name: Create log directories for additional agents
+- name: Create log directories for agent
   become: yes
   file:
     state: directory
-    path: /var/log/go-agent-{{ item }}
+    path: /var/log/go-agent
     owner: "{{ gocd_agent.user }}"
     group: "{{ gocd_agent.user }}"
-  with_sequence: count="{{ gocd_agent.no_of_agents }}"
