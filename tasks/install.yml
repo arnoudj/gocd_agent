@@ -2,7 +2,7 @@
 - name: Ensure go group
   become: yes
   group:
-    name: "{{ gocd_agent.group }}"
+    name: "{{ gocd_agent.user }}"
     state: present
 
 - name: Ensure go user
@@ -10,7 +10,7 @@
   user:
     name: "{{ gocd_agent.user }}"
     comment: Go CD User
-    group: "{{ gocd_agent.group }}"
+    group: "{{ gocd_agent.user }}"
     home: "{{ gocd_agent.user_dir }}"
 
 - name: Set hostname
